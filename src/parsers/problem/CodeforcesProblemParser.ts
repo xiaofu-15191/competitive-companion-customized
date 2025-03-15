@@ -58,9 +58,9 @@ export class CodeforcesProblemParser extends Parser {
     const pid = /\d+/.exec(url).at(0) + ' ' + /[A-Z]/.exec(url).at(0);
 
     if (!url.includes('group') && (url.includes('problemset') || url.includes('contest'))) {
-      task.setName('CF ' + pid);
+      task.setName(elem.querySelector('.problem-statement > .header > .title').textContent.trim());
     } else if (url.includes('gym')) {
-      task.setName('CF GYM ' + pid);
+      task.setName(elem.querySelector('.problem-statement > .header > .title').textContent.trim());
     } else {
       task.setName(elem.querySelector('.problem-statement > .header > .title').textContent.trim());
     }
