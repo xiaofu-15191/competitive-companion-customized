@@ -137,3 +137,5 @@ firefox-tmp/
 # Custom
 .cph
 *.cpp
+build-chrome.rar
+build-firefox.rar
