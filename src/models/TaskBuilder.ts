@@ -54,10 +54,11 @@ export class TaskBuilder {
   }
 
   public setName(name: string): TaskBuilder {
-    this.name = prompt('Please set a name for this problem:', name);
-    if (this.name == null) {
-      throw new Reporter('Parser was cancelled by user.');
-    }
+    // this.name = prompt('Please set a name for this problem:', name);
+    // if (this.name == null) {
+    //   throw new Reporter('Parser was cancelled by user.');
+    // }
+    this.name = name;
     return this.updateJavaTaskClassFromName();
   }
 
