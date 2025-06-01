@@ -11,14 +11,12 @@ export class AtCoderProblemParser extends Parser {
   public async parse(url: string, html: string): Promise<Sendable> {
     const elem = htmlToElement(html);
     const task = new TaskBuilder('AtCoder').setUrl(url);
-    const url_list = url.split('/');
-    const problem_id = url_list[url_list.length - 1].toUpperCase();
 
     const name = [...elem.querySelector('h2, .h2').childNodes]
-    .filter(node => node.nodeType === Node.TEXT_NODE)
-    .map(node => node.textContent)
-    .join('')
-    .trim();
+      .filter(node => node.nodeType === Node.TEXT_NODE)
+      .map(node => node.textContent)
+      .join('')
+      .trim();
 
     task.setName(name);
     task.setCategory(elem.querySelector('.contest-name, .contest-title').textContent);
@@ -32,7 +30,7 @@ export class AtCoderProblemParser extends Parser {
     task.setTimeLimit(parseFloat(/([0-9.]+) ?sec/.exec(timeLimitStr)[1]) * 1000);
 
     const memoryLimitStr = limitNodes.textContent;
-    task.setMemoryLimit(parseInt(/(\d+) ?MB/.exec(memoryLimitStr)[1], 10));
+    task.setMemoryLimit(parseInt(/(\d+) ?Mi?B/.exec(memoryLimitStr)[1], 10));
 
     const inputs = [...elem.querySelectorAll('h3')]
       .filter(el => el.textContent.includes('入力例'))

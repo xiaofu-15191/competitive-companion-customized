@@ -139,3 +139,5 @@ firefox-tmp/
 *.cpp
 build-chrome.rar
 build-firefox.rar
+build-chrome.zip
+build-firefox.zip
