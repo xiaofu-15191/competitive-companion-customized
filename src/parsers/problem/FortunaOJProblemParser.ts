@@ -39,13 +39,15 @@ export class FortunaOJProblemParser extends Parser {
 
     for (let i = 0; i < codeBlocks.length - 1; i += 2) {
       this.splitChinese(codeBlocks[i].innerHTML).forEach(str => {
+        // 替换所有U+00A0字符和 &nbsp; 为普通空格
+        str = str.replace(/\u00A0/g, ' ').replace(/&nbsp;/g, ' ');
         sample_in.push(str);
       });
       this.splitChinese(codeBlocks[i + 1].innerHTML).forEach(str => {
         sample_out.push(str);
       });
     }
-
+    console.log(sample_in, sample_out);
     console.assert(sample_in.length == sample_out.length, 'The number of sample in / out are not the same!');
     for (let i = 0; i < sample_in.length && i < sample_out.length; ++i) {
       task.addTest(sample_in[i], sample_out[i]);
