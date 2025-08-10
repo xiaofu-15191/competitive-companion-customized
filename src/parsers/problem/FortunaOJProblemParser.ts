@@ -39,9 +39,11 @@ export class FortunaOJProblemParser extends Parser {
 
     for (let i = 0; i < codeBlocks.length - 1; i += 2) {
       this.splitChinese(codeBlocks[i].innerHTML).forEach(str => {
+        str = str.replace(/\u00A0/g, ' ').replace(/&nbsp;/g, ' ');
         sample_in.push(str);
       });
       this.splitChinese(codeBlocks[i + 1].innerHTML).forEach(str => {
+        str = str.replace(/\u00A0/g, ' ').replace(/&nbsp;/g, ' ');
         sample_out.push(str);
       });
     }
